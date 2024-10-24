@@ -1,0 +1,33 @@
+body {
+  background-color: #171717;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+}
+
+.cart_container {
+  border: 1px solid white;
+  border-radius: 6px;
+  padding: 5px;
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent;
+}
+.cart_container svg {
+  stroke: white;
+}
+.cart_menu {
+  display: none;
+}
