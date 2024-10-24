@@ -22,9 +22,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-bottom: 30px;
   font-size: 14px;
 }
 
@@ -47,18 +45,43 @@ header {
 .first_section {
   display: flex;
   gap: 20px;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 64rem) {
+  .first_section {
+    max-height: calc(100vh - 200px);
+  }
 }
 
 .first {
-  width: 80%;
+  width: 60%;
 }
 
 .product {
   background-color: rgb(6, 6, 6);
+  border-radius: 6px;
 }
 
 .product img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.second {
+  width: calc(40% - 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.second > div {
+  max-height: calc(50% - 10px);
+}
+
+.second_section {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
 }
