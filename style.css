@@ -176,6 +176,7 @@ footer {
 footer p {
   text-align: center;
   padding: 20px;
+  font-size: 14px;
 }
 
 /* MEDIA QUERIES */
