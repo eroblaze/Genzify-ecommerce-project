@@ -213,7 +213,6 @@ header {
   place-items: center;
   background-color: gray;
   border-radius: 100vmax;
-  padding: 5px;
   color: black;
 }
 
@@ -261,6 +260,10 @@ header {
 
 .slide {
   transform: translateX(0px);
+}
+
+.none {
+  display: none;
 }
 
 /* FOOTER */
