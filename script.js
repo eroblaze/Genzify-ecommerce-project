@@ -21,7 +21,7 @@ function createItem(product_ID, product_name, product_price) {
 
       <div class="content_item_title">
         <span class="cancel" product_id="${product_ID}">
-          <img src="images/cancel.png" />
+          <img src="images/cancel.png" class="cancel_image" product_id="${product_ID}"/>
         </span>
         <h5>${product_name}</h5>
       </div>
@@ -84,6 +84,11 @@ addToCartButtons.forEach((el) => {
 
 // Increase and Decrease Items quantity
 
+function getContentItem(product_ID) {
+  const content_item = document.querySelector(`#content_item_${product_ID}`);
+  return content_item;
+}
+
 function removeElement(content_item, product_ID) {
   content_item.remove();
   delete addedItems[product_ID];
@@ -98,7 +103,7 @@ function increaseItemQty(event) {
   const targetElement = event.target;
   const product_ID = targetElement.getAttribute("product_id");
   const product_price = targetElement.getAttribute("product_price");
-  const content_item = document.querySelector(`#content_item_${product_ID}`);
+  const content_item = getContentItem(product_ID);
 
   const qty = content_item.querySelector(".qty");
   qty.textContent = Number(qty.textContent) + 1;
@@ -113,7 +118,7 @@ function decreaseItemQty(event) {
   const targetElement = event.target;
   const product_ID = targetElement.getAttribute("product_id");
   const product_price = targetElement.getAttribute("product_price");
-  const content_item = document.querySelector(`#content_item_${product_ID}`);
+  const content_item = getContentItem(product_ID);
 
   const qty = content_item.querySelector(".qty");
   qty.textContent = Number(qty.textContent) - 1;
@@ -128,6 +133,17 @@ function decreaseItemQty(event) {
   decreaseTotalPrice(product_price);
 }
 
+function handleCancelBtn(event) {
+  const targetElement = event.target;
+  const product_ID = targetElement.getAttribute("product_id");
+  const content_item = getContentItem(product_ID);
+
+  const price = content_item.querySelector(".item_price").textContent;
+
+  decreaseTotalPrice(price);
+  removeElement(content_item, product_ID);
+}
+
 const cart_menu = document.querySelector(".cart_menu");
 
 cart_menu.addEventListener("click", (event) => {
@@ -136,5 +152,10 @@ cart_menu.addEventListener("click", (event) => {
     increaseItemQty(event);
   } else if (targetElement.classList.contains("decrease_qty")) {
     decreaseItemQty(event);
+  } else if (
+    targetElement.classList.contains("cancel") ||
+    targetElement.classList.contains("cancel_image")
+  ) {
+    handleCancelBtn(event);
   }
 });
