@@ -28,7 +28,7 @@ function createItem(product_ID, product_name, product_price) {
     <div class="first_part">
 
       <div class="content_item_title">
-        <span class="cancel" product_id="${product_ID}">
+        <span class="clickable cancel" product_id="${product_ID}">
           <img src="images/cancel.png" class="cancel_image" product_id="${product_ID}"/>
         </span>
         <h5>${product_name}</h5>
@@ -39,11 +39,11 @@ function createItem(product_ID, product_name, product_price) {
     </div>
 
     <div class="quantity_regulator">
-      <img src="images/remove.png" class="decrease_qty" product_id="${product_ID}" product_price="${product_price}"/>
+      <img src="images/remove.png" class="clickable decrease_qty" product_id="${product_ID}" product_price="${product_price}"/>
     
       <span class="qty">1</span>
 
-      <img src="images/add.png" class="increase_qty" product_id="${product_ID}" product_price="${product_price}"/>
+      <img src="images/add.png" class="clickable increase_qty" product_id="${product_ID}" product_price="${product_price}"/>
     </div>
 
 </div>
