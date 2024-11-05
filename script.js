@@ -1,3 +1,5 @@
+// Cart menu slide in
+
 const cart = document.querySelector(".cart");
 const close_cart = document.querySelector(".close_cart");
 
@@ -12,6 +14,12 @@ close_cart.addEventListener("click", () => {
 // Add To Cart
 
 const addedItems = {};
+
+const addToCartButtons = document.querySelectorAll(".add_to_cart");
+
+addToCartButtons.forEach((el) => {
+  el.addEventListener("click", handleAddToCart);
+});
 
 function createItem(product_ID, product_name, product_price) {
   const element = `
@@ -51,11 +59,11 @@ function increaseTotalPrice(product_price) {
 
 function decreaseTotalPrice(product_price) {
   const totalPrice = document.querySelector(".total_price");
-  const sum = Number(totalPrice.textContent) - product_price;
+  const sum = Number(totalPrice.textContent) - Number(product_price);
   totalPrice.textContent = sum;
 }
 
-function handleEvent(event) {
+function handleAddToCart(event) {
   const addToCartBtn = event.currentTarget;
   const product_name = addToCartBtn.getAttribute("product_name");
   const product_price = addToCartBtn.getAttribute("product_price");
@@ -76,13 +84,23 @@ function handleEvent(event) {
   }
 }
 
-const addToCartButtons = document.querySelectorAll(".add_to_cart");
-
-addToCartButtons.forEach((el) => {
-  el.addEventListener("click", handleEvent);
-});
-
 // Increase and Decrease Items quantity
+
+const cart_menu = document.querySelector(".cart_menu");
+
+cart_menu.addEventListener("click", (event) => {
+  const targetElement = event.target;
+  if (targetElement.classList.contains("increase_qty")) {
+    increaseItemQty(event);
+  } else if (targetElement.classList.contains("decrease_qty")) {
+    decreaseItemQty(event);
+  } else if (
+    targetElement.classList.contains("cancel") ||
+    targetElement.classList.contains("cancel_image")
+  ) {
+    handleCancelBtn(event);
+  }
+});
 
 function getContentItem(product_ID) {
   const content_item = document.querySelector(`#content_item_${product_ID}`);
@@ -143,19 +161,3 @@ function handleCancelBtn(event) {
   decreaseTotalPrice(price);
   removeElement(content_item, product_ID);
 }
-
-const cart_menu = document.querySelector(".cart_menu");
-
-cart_menu.addEventListener("click", (event) => {
-  const targetElement = event.target;
-  if (targetElement.classList.contains("increase_qty")) {
-    increaseItemQty(event);
-  } else if (targetElement.classList.contains("decrease_qty")) {
-    decreaseItemQty(event);
-  } else if (
-    targetElement.classList.contains("cancel") ||
-    targetElement.classList.contains("cancel_image")
-  ) {
-    handleCancelBtn(event);
-  }
-});

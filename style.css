@@ -209,8 +209,9 @@ header {
 }
 
 .cancel {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: gray;
   border-radius: 100vmax;
   color: black;
